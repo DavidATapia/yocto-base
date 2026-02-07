@@ -1,4 +1,4 @@
-ARG UBUNTU_VERSION=22.04
+ARG UBUNTU_VERSION=24.04
 FROM ubuntu:${UBUNTU_VERSION}
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
         file \
         flex \
         gawk \
+        gcc \
         gcc-multilib \
         git \
         help2man \
@@ -28,7 +29,8 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
         iputils-ping \
         less \
         libacl1 \
-        libegl1-mesa \
+        libegl-mesa0 \
+        libegl1-mesa-dev \
         liblz4-tool \
         libncurses5-dev \
         libsdl1.2-dev \
@@ -83,7 +85,7 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
         && apt-get clean
 
 # Pip packages
-RUN pip install \
+RUN pip install --break-system-packages \
         kas \
         pip-tools
 
