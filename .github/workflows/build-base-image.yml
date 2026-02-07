@@ -50,8 +50,9 @@ jobs:
       - name: Build & push (new 'latest') image to GHCR
         # when we merge to 'main'
         if: github.event.pull_request.merged
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
           tags: |
             ${{ steps.metadata.outputs.tags }}-${{ github.sha }}
